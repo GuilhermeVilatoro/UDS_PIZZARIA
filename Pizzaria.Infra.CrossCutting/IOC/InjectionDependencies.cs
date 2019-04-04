@@ -1,0 +1,39 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using Pizzaria.Application.Services;
+using Pizzaria.Domain.Business;
+using Pizzaria.Domain.Business.Interfaces;
+using Pizzaria.Domain.Repository.Interfaces;
+using Pizzaria.Infra.Data.Context;
+
+namespace Pizzaria.Infra.CrossCutting.IOC
+{
+    public static class InjectionDependencies
+    {
+        /// <summary>
+        /// Responsável por realizar o registro das dependências.
+        /// </summary>
+        /// <param name="dependencies">Lista a qual será adicionada as dependências</param>
+        public static void RegisterDependencies(IServiceCollection dependencies)
+        {
+            #region Repository            
+            dependencies.AddScoped<IAdicionaisPedidoRepository, AdicionaisPedidoRepository>();
+            dependencies.AddScoped<IAdicionaisPizzaRepository, AdicionaisPizzaRepository>();
+            dependencies.AddScoped<IPedidoRepository, PedidoRepository>();
+            dependencies.AddScoped<ISaboresPizzaRepository, SaboresPizzaRepository>();
+            dependencies.AddScoped<ITamanhosPizzaRepository, TamanhosPizzaRepository>();            
+            dependencies.AddScoped<PizzariaContext>();
+            #endregion
+
+            #region Services 
+            dependencies.AddScoped<IAdicionaisPizzaService, AdicionaisPizzaService>();
+            dependencies.AddScoped<IPedidosService, PedidosService>();
+            dependencies.AddScoped<ISaboresPizzaService, SaboresPizzaService>();
+            dependencies.AddScoped<ITamanhosPizzaService, TamanhosPizzaService>();
+            #endregion region
+
+            #region Business 
+            dependencies.AddScoped<IPedidoBusiness, PedidoBusiness>();            
+            #endregion region
+        }
+    }
+}
