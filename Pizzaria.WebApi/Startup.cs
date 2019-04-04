@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
+using Pizzaria.Infra.CrossCutting.IOC;
+using Pizzaria.WebApi.Configurations;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace Pizzaria.WebApi
 {
@@ -25,7 +24,35 @@ namespace Pizzaria.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(option =>
+                {
+                    var resolver = option.SerializerSettings.ContractResolver;
+                    if (resolver != null)
+                        (resolver as DefaultContractResolver).NamingStrategy = null;
+                });
+
+            services.AddAutoMapperSetup();
+
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Pizzaria WebApi",
+                    Description = "Sistema de controle de pedidos de uma pizzaria",
+                    Contact = new OpenApiContact { Name = "Guilherme Vilatoro Santos", Email = "vilatorog@gmail.com" }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
+            });
+
+            InjectionDependencies.RegisterDependencies(services);
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,12 +64,22 @@ namespace Pizzaria.WebApi
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "Pizzaria WebApi");
+                c.RoutePrefix = string.Empty;
+            });
         }
     }
 }
