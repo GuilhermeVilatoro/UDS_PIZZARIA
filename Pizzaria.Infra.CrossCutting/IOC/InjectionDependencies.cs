@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Pizzaria.Application.Services;
+using Pizzaria.Application.Services.Interfaces;
 using Pizzaria.Domain.Business;
 using Pizzaria.Domain.Business.Interfaces;
 using Pizzaria.Domain.Repository.Interfaces;
@@ -27,10 +28,14 @@ namespace Pizzaria.Infra.CrossCutting.IOC
             dependencies.AddScoped<IPedidosService, PedidosService>();
             dependencies.AddScoped<ISaboresPizzaService, SaboresPizzaService>();
             dependencies.AddScoped<ITamanhosPizzaService, TamanhosPizzaService>();
+            dependencies.AddScoped<IAdicionaisPizzaService, AdicionaisPizzaService>();
             #endregion region
 
             #region Business 
-            dependencies.AddScoped<IPedidoBusiness, PedidoBusiness>();            
+            dependencies.AddScoped<IMontagemPedidoBusiness, MontagemPedidoBusiness>();
+            dependencies.AddScoped<IPersonalizacaoPedidoBusiness, PersonalizacaoPedidoBusiness>();
+            dependencies.AddScoped<IResumoPedidoBusiness, ResumoPedidoBusiness>();
+            dependencies.AddScoped<IFinalizaPedidoBusiness, FinalizaPedidoBusiness>();
             #endregion region
         }
     }

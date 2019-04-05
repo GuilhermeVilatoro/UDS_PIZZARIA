@@ -8,7 +8,7 @@ namespace Pizzaria.Application.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Description("Sabor da Pizza")]
+        [Description("Tamanho da Pizza")]
         [Required(ErrorMessage = "Preencha o campo Tamanho")]
         [MaxLength(50, ErrorMessage = "Máximo {0} caracteres")]
         public string Tamanho { get; set; }

@@ -18,6 +18,8 @@ namespace Pizzaria.Domain.Models
 
         public int Tempo { get; set; }
 
+        public bool? Finalizado { get; set; }
+
         public virtual IEnumerable<AdicionaisPedido> AdicionaisPedido { get; set; }
     }
 } 

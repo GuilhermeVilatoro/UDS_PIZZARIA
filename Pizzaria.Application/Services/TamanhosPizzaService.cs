@@ -7,7 +7,7 @@ namespace Pizzaria.Application.Services
 {
     public class TamanhosPizzaService : ServiceBase<TamanhosPizzaViewModel, TamanhosPizza>, ITamanhosPizzaService
     {
-        public TamanhosPizzaService(IMapper mapper, IRepositoryBase<TamanhosPizza> repository) : base(mapper, repository)
+        public TamanhosPizzaService(IMapper mapper, ITamanhosPizzaRepository repository) : base(mapper, repository)
         {
         }
     }

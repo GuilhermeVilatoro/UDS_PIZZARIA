@@ -10,6 +10,7 @@ namespace Pizzaria.Application.AutoMapper
             {
                 x.AddProfile<DomainToViewModelMappingProfile>();
                 x.AddProfile<ViewModelToDomainMappingProfile>();
+                x.AddProfile<ViewModelToBusinessDtoMappingProfile>();
             });
         }
     }

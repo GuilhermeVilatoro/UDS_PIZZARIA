@@ -23,6 +23,8 @@ namespace Pizzaria.Application.ViewModels
 
         [Description("Tempo total do pedido")]
         [Required(ErrorMessage = "Preencha o campo Tempo")]
-        public int Tempo { get; set; }        
+        public int Tempo { get; set; }
+        
+        public bool? Finalizado { get; set; }
     }
 }

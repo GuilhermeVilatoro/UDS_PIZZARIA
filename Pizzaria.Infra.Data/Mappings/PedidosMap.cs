@@ -21,6 +21,8 @@ namespace Pizzaria.Infra.Data.Mappings
             builder.Property(p => p.Total);
 
             builder.Property(p => p.Tempo);
+
+            builder.Property(p => p.Finalizado);
         }
     }
 }
