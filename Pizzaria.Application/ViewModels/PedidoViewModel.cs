@@ -13,7 +13,7 @@ namespace Pizzaria.Application.ViewModels
 
         public int TamanhoPizzaId { get; set; }
 
-        public virtual SaboresPizzaViewModel SaborPizza { get; set; }
+        public virtual SaboresPizzaViewModel SaborPizza { get;  internal set; }
 
         public virtual TamanhosPizzaViewModel TamanhoPizza { get; set; }
 
@@ -23,8 +23,6 @@ namespace Pizzaria.Application.ViewModels
 
         [Description("Tempo total do pedido")]
         [Required(ErrorMessage = "Preencha o campo Tempo")]
-        public int Tempo { get; set; }
-
-        public virtual IEnumerable<AdicionaisPedidoViewModel> AdicionaisPedido { get; set; }
+        public int Tempo { get; set; }        
     }
 }

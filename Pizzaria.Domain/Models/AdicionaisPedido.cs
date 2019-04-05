@@ -8,6 +8,6 @@
 
         public int AdicionaisPizzaId { get; set; }
 
-        public virtual AdicionaisPizza AdicionalPizza { get; set; }        
+        public virtual AdicionaisPizza AdicionalPizza { get; set; }
     }
 }

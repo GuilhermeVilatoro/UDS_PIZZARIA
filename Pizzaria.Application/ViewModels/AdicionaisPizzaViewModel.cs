@@ -20,6 +20,6 @@ namespace Pizzaria.Application.ViewModels
         [Description("Tempo adicional atribuído a alguns adicionais da pizza")]
         public int? Tempo { get; set; }
 
-        public virtual IEnumerable<AdicionaisPedidoViewModel> AdicionaisPedido { get; set; }
+        public virtual IEnumerable<AdicionaisPizzaViewModel> AdicionaisPedido { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace Pizzaria.Infra.CrossCutting.IOC
         public static void RegisterDependencies(IServiceCollection dependencies)
         {
             #region Repository            
-            dependencies.AddScoped<IAdicionaisPedidoRepository, AdicionaisPedidoRepository>();
             dependencies.AddScoped<IAdicionaisPizzaRepository, AdicionaisPizzaRepository>();
             dependencies.AddScoped<IPedidoRepository, PedidoRepository>();
             dependencies.AddScoped<ISaboresPizzaRepository, SaboresPizzaRepository>();
@@ -25,7 +24,6 @@ namespace Pizzaria.Infra.CrossCutting.IOC
             #endregion
 
             #region Services 
-            dependencies.AddScoped<IAdicionaisPizzaService, AdicionaisPizzaService>();
             dependencies.AddScoped<IPedidosService, PedidosService>();
             dependencies.AddScoped<ISaboresPizzaService, SaboresPizzaService>();
             dependencies.AddScoped<ITamanhosPizzaService, TamanhosPizzaService>();

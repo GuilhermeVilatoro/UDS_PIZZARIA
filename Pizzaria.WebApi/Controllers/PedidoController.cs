@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pizzaria.Application.Services;
 using Pizzaria.Application.ViewModels;
+using Pizzaria.Domain.Business.Enums;
 
 namespace Pizzaria.WebApi.Controllers
 {
@@ -15,53 +16,53 @@ namespace Pizzaria.WebApi.Controllers
             _pedidosService = pedidosService;
         }
 
-        // GET: api/Pedido
-        [HttpGet]
-        public IActionResult GetPedidoViewModel()
-        {
-            return Response(_pedidosService.GetAll());
-        }
+        //// GET: api/Pedido
+        //[HttpGet]
+        //public IActionResult GetPedidoViewModel()
+        //{
+        //    return Response(_pedidosService.GetAll());
+        //}
 
-        // GET: api/Pedido/5
-        [HttpGet("{id}")]
-        public IActionResult GetPedidoViewModel(int id)
-        {
-            var viewModel = _pedidosService.GetById(id);
+        //// GET: api/Pedido/5
+        //[HttpGet("{id}")]
+        //public IActionResult GetPedidoViewModel(int id)
+        //{
+        //    var viewModel = _pedidosService.GetById(id);
 
-            return Response(viewModel);
-        }
+        //    return Response(viewModel);
+        //}
 
         // PUT: api/Pedido/5
-        [HttpPut("{id}")]
-        public IActionResult PutPedidoViewModel([FromBody]PedidoViewModel pedidoViewModel)
-        {
-            if (!ModelState.IsValid)
-                return Response(pedidoViewModel);
+        //[HttpPut("{id}")]
+        //public IActionResult PutPedidoViewModel([FromBody]PedidoViewModel pedidoViewModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return Response(pedidoViewModel);
 
-            _pedidosService.Update(pedidoViewModel);
+        //    _pedidosService.Update(pedidoViewModel);
 
-            return Response(pedidoViewModel);
-        }
+        //    return Response(pedidoViewModel);
+        //}
 
         // POST: api/Pedido
         [HttpPost]
-        public IActionResult PostPedidoViewModel(PedidoViewModel pedidoViewModel)
+        public IActionResult PostPedidoViewModel(AdicionaisPizzaViewModel pedidoViewModel)
         {
             if (!ModelState.IsValid)
                 return Response(pedidoViewModel);
 
-            _pedidosService.Add(pedidoViewModel);
+            _pedidosService.PersonalizarPedido(pedidoViewModel);
 
             return Response(pedidoViewModel);
         }
 
-        // DELETE: api/Pedido/5
-        [HttpDelete("{id}")]
-        public IActionResult DeletePedidoViewModel(int id)
-        {
-            _pedidosService.Delete(id);
+        //// DELETE: api/Pedido/5
+        //[HttpDelete("{id}")]
+        //public IActionResult DeletePedidoViewModel(int id)
+        //{
+        //    _pedidosService.Delete(id);
 
-            return Response();
-        }
+        //    return Response();
+        //}
     }
 }

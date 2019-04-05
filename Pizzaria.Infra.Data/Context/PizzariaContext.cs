@@ -24,7 +24,19 @@ namespace Pizzaria.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new TamanhosPizzaMap());
             modelBuilder.ApplyConfiguration(new AdicionaisPizzaMap());
             modelBuilder.ApplyConfiguration(new PedidosMap());
-            modelBuilder.ApplyConfiguration(new AdicionaisPedidoMap());            
+
+            modelBuilder.Entity<AdicionaisPedido>().HasKey(sc => new { sc.PedidosId, sc.AdicionaisPizzaId });
+
+            modelBuilder.Entity<AdicionaisPedido>()
+                .HasOne<Pedidos>(sc => sc.Pedido)
+                .WithMany(s => s.AdicionaisPedido)
+                .HasForeignKey(sc => sc.PedidosId);
+
+
+            modelBuilder.Entity<AdicionaisPedido>()
+                .HasOne<AdicionaisPizza>(sc => sc.AdicionalPizza)
+                .WithMany(s => s.AdicionaisPedido)
+                .HasForeignKey(sc => sc.AdicionaisPizzaId);
 
             base.OnModelCreating(modelBuilder);
         }

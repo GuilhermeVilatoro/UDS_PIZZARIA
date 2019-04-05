@@ -1,10 +1,11 @@
 ﻿using Pizzaria.Domain.Business.Enums;
+using Pizzaria.Domain.Models;
 
 namespace Pizzaria.Domain.Business.Dto
 {
     public class DadosIniciaisPedidoDto
     {
-        public TamanhosPizzaEnum TamanhosPizza { get; set; }
-        public SaboresPizzaEnum SaboresPizza { get; set; }
+        public TamanhosPizza TamanhoPizza { get; set; }
+        public SaboresPizza SaborePizza { get; set; }
     }
 }
