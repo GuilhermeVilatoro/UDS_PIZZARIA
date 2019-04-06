@@ -34,13 +34,13 @@ namespace Pizzaria.Domain.Business
                 .FirstOrDefault(x => x.Tamanho.ToUpper() == montagemPedido.TamanhoPizza.ToUpper());
 
             if (tamanhoPizza == null)
-                throw new Exception($"O tamanho de pizza { montagemPedido.TamanhoPizza } informado não está cadastrado!");
+                throw new Exception($"O tamanho de pizza { montagemPedido.TamanhoPizza } informado não esta cadastrado!");
 
             var saborPizza = _saboresPizzaRepository.GetAll()
                 .FirstOrDefault(x => x.Sabor.ToUpper() == montagemPedido.SaborPizza.ToUpper());
 
             if (saborPizza == null)
-                throw new Exception($"O sabor de pizza { montagemPedido.SaborPizza } informado não está cadastrado!");
+                throw new Exception($"O sabor de pizza { montagemPedido.SaborPizza } informado não esta cadastrado!");
 
             var pedido = new Pedidos
             {

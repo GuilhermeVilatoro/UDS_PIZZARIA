@@ -15,6 +15,7 @@ namespace Pizzaria.Domain.Business
         private readonly IAdicionaisPizzaRepository _adicionaisPizzaRepository;
         private readonly ITamanhosPizzaRepository _tamanhosPizzaRepository;
         private readonly ISaboresPizzaRepository _saboresPizzaRepository;
+        private readonly IAdicionaisPedidoRepository _adicionaisPedidoRepository;
 
         private readonly IMapper _mapper;
 
@@ -22,11 +23,13 @@ namespace Pizzaria.Domain.Business
             IAdicionaisPizzaRepository adicionaisPizzaRepository,
             ITamanhosPizzaRepository tamanhosPizzaRepository,
             ISaboresPizzaRepository saboresPizzaRepository,
+            IAdicionaisPedidoRepository adicionaisPedidoRepository,
             IMapper mapper)
         {
             _adicionaisPizzaRepository = adicionaisPizzaRepository;
             _tamanhosPizzaRepository = tamanhosPizzaRepository;
             _saboresPizzaRepository = saboresPizzaRepository;
+            _adicionaisPedidoRepository = adicionaisPedidoRepository;
             _pedidoRepository = pedidoRepository;
 
             _mapper = mapper;
@@ -41,7 +44,7 @@ namespace Pizzaria.Domain.Business
                 throw new Exception($"O pedido {identificadorPedido} não existe!");
 
             if (pedido.Finalizado.GetValueOrDefault(true))
-                throw new Exception($"O pedido já está finalizado não é possível adicional incrementos!");
+                throw new Exception($"O pedido já esta finalizado não é possível adicional incrementos!");
 
             var adicionalPizza = personalizacaoPedido.AdicionalPizza;
 
@@ -49,20 +52,24 @@ namespace Pizzaria.Domain.Business
                 .FirstOrDefault(x => x.Adicional.ToUpper() == adicionalPizza.ToUpper());
 
             if (personalizacaoPizza == null)
-                throw new Exception($"A personalização {adicionalPizza} informada não está cadastrada!");
+                throw new Exception($"A personalização {adicionalPizza} informada não esta cadastrada!");
+
+            if (_adicionaisPedidoRepository.ExisteAdicionalCadastroNoPedido(identificadorPedido, personalizacaoPizza.Id))
+                throw new Exception($"A personalização {adicionalPizza} informada já esta cadastrada no pedido!");
 
             pedido.Total += personalizacaoPizza.Valor ?? 0;
             pedido.Tempo += personalizacaoPizza.Tempo ?? 0;
             pedido.TamanhosPizza = _tamanhosPizzaRepository.GetById(pedido.TamanhosPizzaId);
             pedido.SaboresPizza = _saboresPizzaRepository.GetById(pedido.SaboresPizzaId);
 
-            if (pedido.AdicionaisPedido == null)
-                pedido.AdicionaisPedido = new List<AdicionaisPedido>();
+            pedido.AdicionaisPedido = _adicionaisPedidoRepository.BuscarAdicionaisPorPedido(identificadorPedido);           
 
             pedido.AdicionaisPedido.Add(new AdicionaisPedido
             {
-                AdicionaisPizza = personalizacaoPizza,
-                Pedidos = pedido
+                AdicionaisPizzaId = personalizacaoPizza.Id,
+                PedidosId = pedido.Id
+                //AdicionaisPizza = personalizacaoPizza,
+                //Pedidos = pedido
             });
 
             _pedidoRepository.Update(pedido);
