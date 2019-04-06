@@ -10,13 +10,13 @@ namespace Pizzaria.Infra.Data.Mappings
         {
             builder.HasKey(p => p.Id);
 
-            builder.HasOne(p => p.SaborPizza)
-               .WithMany()
+            builder.HasOne(p => p.SaboresPizza)
+               .WithMany(sp => sp.Pedidos)
                .HasForeignKey(p => p.SaboresPizzaId);
 
-            builder.HasOne(p => p.TamanhoPizza)
-               .WithMany()
-               .HasForeignKey(p => p.TamanhoPizzaId);
+            builder.HasOne(p => p.TamanhosPizza)
+               .WithMany(t => t.Pedidos)
+               .HasForeignKey(p => p.TamanhosPizzaId);
 
             builder.Property(p => p.Total);
 

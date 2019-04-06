@@ -1,4 +1,6 @@
-﻿namespace Pizzaria.Domain.Models
+﻿using System.Collections.Generic;
+
+namespace Pizzaria.Domain.Models
 {
     public class SaboresPizza
     {
@@ -7,5 +9,7 @@
         public string Sabor { get; set; }
 
         public int? TempoAdicional { get; set; }
+
+        public IList<Pedidos> Pedidos { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Pizzaria.Infra.CrossCutting.IOC
             dependencies.AddScoped<IAdicionaisPizzaRepository, AdicionaisPizzaRepository>();
             dependencies.AddScoped<IPedidoRepository, PedidoRepository>();
             dependencies.AddScoped<ISaboresPizzaRepository, SaboresPizzaRepository>();
-            dependencies.AddScoped<ITamanhosPizzaRepository, TamanhosPizzaRepository>();            
+            dependencies.AddScoped<ITamanhosPizzaRepository, TamanhosPizzaRepository>();
             dependencies.AddScoped<PizzariaContext>();
             #endregion
 

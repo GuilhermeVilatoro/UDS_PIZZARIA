@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Pizzaria.Domain.Models;
+using System.Collections.Generic;
 
-namespace Pizzaria.Application.ViewModels
+namespace Pizzaria.Domain.Business.Dto
 {
-    public class PedidoViewModel
+    public class ResumoPedidoDto
     {
         public string SaborPizza { get; set; }
 
         public string TamanhoPizza { get; set; }
 
-        public IList<AdicionaisPizzaViewModel> Personalizacoes { get; set; }
-
+        public IList<AdicionaisPizza> Personalizacoes { get; set; }
+     
         public decimal Total { get; set; }
-
+        
         public int Tempo { get; set; }
 
         public bool? Finalizado { get; set; }

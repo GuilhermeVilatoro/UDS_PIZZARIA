@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Pizzaria.Application.ViewModels
@@ -18,8 +17,6 @@ namespace Pizzaria.Application.ViewModels
         public decimal? Valor { get; set; }
 
         [Description("Tempo adicional atribuído a alguns adicionais da pizza")]
-        public int? Tempo { get; set; }
-
-        public virtual IEnumerable<AdicionaisPizzaViewModel> AdicionaisPedido { get; set; }
+        public int? Tempo { get; set; }        
     }
 }

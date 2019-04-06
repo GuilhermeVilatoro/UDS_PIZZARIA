@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pizzaria.Infra.Data.Context;
 
 namespace Pizzaria.Infra.Data.Migrations
 {
     [DbContext(typeof(PizzariaContext))]
-    partial class PizzariaContextModelSnapshot : ModelSnapshot
+    [Migration("20190406150708_AlteracaoBancoTeste")]
+    partial class AlteracaoBancoTeste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +63,7 @@ namespace Pizzaria.Infra.Data.Migrations
 
                     b.Property<int>("SaboresPizzaId");
 
-                    b.Property<int>("TamanhosPizzaId");
+                    b.Property<int>("TamanhoPizzaId");
 
                     b.Property<int>("Tempo");
 
@@ -71,7 +73,7 @@ namespace Pizzaria.Infra.Data.Migrations
 
                     b.HasIndex("SaboresPizzaId");
 
-                    b.HasIndex("TamanhosPizzaId");
+                    b.HasIndex("TamanhoPizzaId");
 
                     b.ToTable("Pedidos");
                 });
@@ -114,12 +116,12 @@ namespace Pizzaria.Infra.Data.Migrations
 
             modelBuilder.Entity("Pizzaria.Domain.Models.AdicionaisPedido", b =>
                 {
-                    b.HasOne("Pizzaria.Domain.Models.AdicionaisPizza", "AdicionaisPizza")
+                    b.HasOne("Pizzaria.Domain.Models.AdicionaisPizza", "AdicionalPizza")
                         .WithMany("AdicionaisPedido")
                         .HasForeignKey("AdicionaisPizzaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Pizzaria.Domain.Models.Pedidos", "Pedidos")
+                    b.HasOne("Pizzaria.Domain.Models.Pedidos", "Pedido")
                         .WithMany("AdicionaisPedido")
                         .HasForeignKey("PedidosId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -127,14 +129,14 @@ namespace Pizzaria.Infra.Data.Migrations
 
             modelBuilder.Entity("Pizzaria.Domain.Models.Pedidos", b =>
                 {
-                    b.HasOne("Pizzaria.Domain.Models.SaboresPizza", "SaboresPizza")
+                    b.HasOne("Pizzaria.Domain.Models.SaboresPizza", "SaborPizza")
                         .WithMany("Pedidos")
                         .HasForeignKey("SaboresPizzaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Pizzaria.Domain.Models.TamanhosPizza", "TamanhosPizza")
+                    b.HasOne("Pizzaria.Domain.Models.TamanhosPizza", "TamanhoPizza")
                         .WithMany("Pedidos")
-                        .HasForeignKey("TamanhosPizzaId")
+                        .HasForeignKey("TamanhoPizzaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

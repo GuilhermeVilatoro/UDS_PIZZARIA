@@ -1,7 +1,9 @@
-﻿using Pizzaria.Domain.Business.Interfaces;
-using Pizzaria.Domain.Models;
+﻿using AutoMapper;
+using Pizzaria.Domain.Business.Dto;
+using Pizzaria.Domain.Business.Interfaces;
 using Pizzaria.Domain.Repository.Interfaces;
 using System;
+using System.Linq;
 
 namespace Pizzaria.Domain.Business
 {
@@ -11,25 +13,32 @@ namespace Pizzaria.Domain.Business
         private readonly ITamanhosPizzaRepository _tamanhosPizzaRepository;
         private readonly ISaboresPizzaRepository _saboresPizzaRepository;
 
+        private readonly IMapper _mapper;
+
         public ResumoPedidoBusiness(IPedidoRepository pedidoRepository,
             ITamanhosPizzaRepository tamanhosPizzaRepository,
-            ISaboresPizzaRepository saboresPizzaRepository)
+            ISaboresPizzaRepository saboresPizzaRepository,
+            IMapper mapper)
         {
             _pedidoRepository = pedidoRepository;
             _tamanhosPizzaRepository = tamanhosPizzaRepository;
             _saboresPizzaRepository = saboresPizzaRepository;
+
+            _mapper = mapper;
         }
 
-        public Pedidos ExibirPedido(int identificadorPedido)
+        public ResumoPedidoDto ExibirPedido(int identificadorPedido)
         {
             var pedido = _pedidoRepository.GetById(identificadorPedido);
             if (pedido == null)
-                throw new Exception($"O pedido {identificadorPedido} não existe!");
+                throw new Exception($"O pedido {identificadorPedido} não existe!");                     
 
-            pedido.TamanhoPizza = _tamanhosPizzaRepository.GetById(pedido.TamanhoPizzaId);
-            pedido.SaborPizza = _saboresPizzaRepository.GetById(pedido.SaboresPizzaId);            
+            pedido.TamanhosPizza = _tamanhosPizzaRepository.GetById(pedido.TamanhosPizzaId);
+            pedido.SaboresPizza = _saboresPizzaRepository.GetById(pedido.SaboresPizzaId);
 
-            return pedido;
+            var resumoPedido = _mapper.Map<ResumoPedidoDto>(pedido);           
+
+            return resumoPedido;
         }      
     }
 }

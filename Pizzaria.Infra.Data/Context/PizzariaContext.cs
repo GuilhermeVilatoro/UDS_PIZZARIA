@@ -16,27 +16,26 @@ namespace Pizzaria.Infra.Data.Context
 
         public DbSet<Pedidos> Pedidos { get; set; }
 
-        public DbSet<AdicionaisPedido> AdicionaisPedido { get; set; }
+        public DbSet<AdicionaisPedido> AdicionaisPedido { get; set; }       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new SaboresPizzaMap());
             modelBuilder.ApplyConfiguration(new TamanhosPizzaMap());
             modelBuilder.ApplyConfiguration(new AdicionaisPizzaMap());
-            modelBuilder.ApplyConfiguration(new PedidosMap());
+            modelBuilder.ApplyConfiguration(new PedidosMap());            
 
             modelBuilder.Entity<AdicionaisPedido>().HasKey(sc => new { sc.PedidosId, sc.AdicionaisPizzaId });
 
             modelBuilder.Entity<AdicionaisPedido>()
-                .HasOne<Pedidos>(sc => sc.Pedido)
+                .HasOne<Pedidos>(sc => sc.Pedidos)
                 .WithMany(s => s.AdicionaisPedido)
                 .HasForeignKey(sc => sc.PedidosId);
 
-
             modelBuilder.Entity<AdicionaisPedido>()
-                .HasOne<AdicionaisPizza>(sc => sc.AdicionalPizza)
+                .HasOne<AdicionaisPizza>(sc => sc.AdicionaisPizza)
                 .WithMany(s => s.AdicionaisPedido)
-                .HasForeignKey(sc => sc.AdicionaisPizzaId);
+                .HasForeignKey(sc => sc.AdicionaisPizzaId);            
 
             base.OnModelCreating(modelBuilder);
         }
@@ -47,7 +46,7 @@ namespace Pizzaria.Infra.Data.Context
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .Build();
+                .Build();            
 
             // define the database to use ver docker
             //optionsBuilder.UseInMemoryDatabase();

@@ -51,7 +51,7 @@ namespace Pizzaria.WebApi
                 s.IncludeXmlComments(xmlPath);
             });
 
-            InjectionDependencies.RegisterDependencies(services);
+            InjectionDependencies.RegisterDependencies(services);           
 
             services.AddCors();
         }

@@ -1,4 +1,5 @@
-﻿using Pizzaria.Domain.Business.Dto;
+﻿using AutoMapper;
+using Pizzaria.Domain.Business.Dto;
 using Pizzaria.Domain.Business.Interfaces;
 using Pizzaria.Domain.Models;
 using Pizzaria.Domain.Repository.Interfaces;
@@ -13,16 +14,21 @@ namespace Pizzaria.Domain.Business
         private readonly ISaboresPizzaRepository _saboresPizzaRepository;
         private readonly ITamanhosPizzaRepository _tamanhosPizzaRepository;
 
+        private readonly IMapper _mapper;
+
         public MontagemPedidoBusiness(IPedidoRepository pedidoRepository,
             ISaboresPizzaRepository saboresPizzaRepository,
-            ITamanhosPizzaRepository tamanhosPizzaRepository)
+            ITamanhosPizzaRepository tamanhosPizzaRepository,
+            IMapper mapper)
         {
             _pedidoRepository = pedidoRepository;
             _saboresPizzaRepository = saboresPizzaRepository;
             _tamanhosPizzaRepository = tamanhosPizzaRepository;
+
+            _mapper = mapper;
         }
 
-        public Pedidos MontarPedido(MontagemPedidoDto montagemPedido)
+        public ResumoPedidoDto MontarPedido(MontagemPedidoDto montagemPedido)
         {
             var tamanhoPizza = _tamanhosPizzaRepository.GetAll()
                 .FirstOrDefault(x => x.Tamanho.ToUpper() == montagemPedido.TamanhoPizza.ToUpper());
@@ -38,15 +44,17 @@ namespace Pizzaria.Domain.Business
 
             var pedido = new Pedidos
             {
-                TamanhoPizza = tamanhoPizza,
-                SaborPizza = saborPizza,
+                TamanhosPizza = tamanhoPizza,
+                SaboresPizza = saborPizza,
                 Total = tamanhoPizza.Valor,
                 Tempo = tamanhoPizza.Tempo + saborPizza.TempoAdicional ?? 0,
                 Finalizado = false
             };
 
             _pedidoRepository.Add(pedido);
-            return pedido;
+
+            var resumoPedido = _mapper.Map<ResumoPedidoDto>(pedido);
+            return resumoPedido;
         }
     }
 }

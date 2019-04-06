@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Pizzaria.Application.ViewModels;
-using Pizzaria.Domain.Business.Dto;
 using Pizzaria.Domain.Models;
 
 namespace Pizzaria.Application.AutoMapper
@@ -11,8 +10,7 @@ namespace Pizzaria.Application.AutoMapper
         {
             CreateMap<SaboresPizza, SaboresPizzaViewModel>();
             CreateMap<TamanhosPizza, TamanhosPizzaViewModel>();
-            CreateMap<AdicionaisPizza, AdicionaisPizzaViewModel>();
-            CreateMap<Pedidos, PedidoViewModel>();            
+            CreateMap<AdicionaisPizza, AdicionaisPizzaViewModel>();                      
         }
     }
 }
