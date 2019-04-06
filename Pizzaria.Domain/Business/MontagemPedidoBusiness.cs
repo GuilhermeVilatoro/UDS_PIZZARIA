@@ -38,8 +38,8 @@ namespace Pizzaria.Domain.Business
 
             var pedido = new Pedidos
             {
-                TamanhoPizzaId = tamanhoPizza.Id,
-                SaboresPizzaId = saborPizza.Id,
+                TamanhoPizza = tamanhoPizza,
+                SaborPizza = saborPizza,
                 Total = tamanhoPizza.Valor,
                 Tempo = tamanhoPizza.Tempo + saborPizza.TempoAdicional ?? 0,
                 Finalizado = false

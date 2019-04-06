@@ -9,8 +9,7 @@ namespace Pizzaria.Application.AutoMapper
         public ViewModelToBusinessDtoMappingProfile()
         {
             CreateMap<MontagemPedidoDto, MontagemPedidoViewModel>();
-            CreateMap<PersonalizacaoPedidoDto, PersonalizacaoPedidoViewModel>();
-            CreateMap<ResumoPedidoDto, ResumoPedidoViewModel>();
+            CreateMap<PersonalizacaoPedidoDto, PersonalizacaoPedidoViewModel>();            
         }
     }
 }

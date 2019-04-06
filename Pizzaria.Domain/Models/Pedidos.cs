@@ -20,6 +20,6 @@ namespace Pizzaria.Domain.Models
 
         public bool? Finalizado { get; set; }
 
-        public virtual IEnumerable<AdicionaisPedido> AdicionaisPedido { get; set; }
+        public virtual IList<AdicionaisPedido> AdicionaisPedido { get; set; }
     }
 } 

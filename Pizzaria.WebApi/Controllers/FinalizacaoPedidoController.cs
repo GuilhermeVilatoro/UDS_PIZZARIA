@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pizzaria.Application.Services;
-using Pizzaria.Application.ViewModels;
+using System;
 
 namespace Pizzaria.WebApi.Controllers
 {
@@ -15,13 +15,19 @@ namespace Pizzaria.WebApi.Controllers
             _pedidosService = pedidosService;
         }
 
-        // GET: api/FinalizacaoPedido/5
+        // GET: api/Pedido/5
         [HttpGet("{id}")]
-        public IActionResult GetResumoPedidoViewModel(int id)
+        public IActionResult GetPedidoViewModel(int id)
         {
-            var viewModel = _pedidosService.ExibirResumoPedido(id);
-
-            return Response(viewModel);
+            try
+            {
+                var viewModel = _pedidosService.ExibirPedido(id);
+                return Response(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return new ObjectResult($"Erro ao exibir o pedido: {ex.Message}");
+            }
         }
 
         // POST: api/FinalizacaoPedido
@@ -31,9 +37,15 @@ namespace Pizzaria.WebApi.Controllers
             if (!ModelState.IsValid)
                 return Response();
 
-            _pedidosService.FinalizarPedido(identificadorPedido);
-
-            return Response();
-        }        
+            try
+            {
+                _pedidosService.FinalizarPedido(identificadorPedido);
+                return new ObjectResult($"O pedido finalizado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return new ObjectResult($"Erro ao finalizar o pedido: {ex.Message}");
+            }          
+        }
     }
 }

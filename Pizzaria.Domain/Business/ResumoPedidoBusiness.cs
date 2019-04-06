@@ -1,41 +1,35 @@
-﻿using Pizzaria.Domain.Business.Dto;
-using Pizzaria.Domain.Business.Interfaces;
+﻿using Pizzaria.Domain.Business.Interfaces;
 using Pizzaria.Domain.Models;
 using Pizzaria.Domain.Repository.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace Pizzaria.Domain.Business
 {
     public class ResumoPedidoBusiness : IResumoPedidoBusiness
     {
         private readonly IPedidoRepository _pedidoRepository;
+        private readonly ITamanhosPizzaRepository _tamanhosPizzaRepository;
+        private readonly ISaboresPizzaRepository _saboresPizzaRepository;
 
-        public ResumoPedidoBusiness(IPedidoRepository pedidoRepository)
+        public ResumoPedidoBusiness(IPedidoRepository pedidoRepository,
+            ITamanhosPizzaRepository tamanhosPizzaRepository,
+            ISaboresPizzaRepository saboresPizzaRepository)
         {
             _pedidoRepository = pedidoRepository;
+            _tamanhosPizzaRepository = tamanhosPizzaRepository;
+            _saboresPizzaRepository = saboresPizzaRepository;
         }
 
-        public ResumoPedidoDto ExibirResumoPedido(int identificadorPedido)
+        public Pedidos ExibirPedido(int identificadorPedido)
         {
             var pedido = _pedidoRepository.GetById(identificadorPedido);
             if (pedido == null)
                 throw new Exception($"O pedido {identificadorPedido} não existe!");
 
-            return new ResumoPedidoDto
-            {
-                TamanhoPizza = pedido.TamanhoPizza.Tamanho,
-                SaborPizza = pedido.SaborPizza.Sabor,
-                ValorTamanhoPizza = pedido.TamanhoPizza.Valor,
-                TempoPreparo = pedido.Tempo,
-                TotalPedido = pedido.Total,
-                Personalizacoes = PrencherPersonalizacoes(pedido.AdicionaisPedido)
-            };
-        }
+            pedido.TamanhoPizza = _tamanhosPizzaRepository.GetById(pedido.TamanhoPizzaId);
+            pedido.SaborPizza = _saboresPizzaRepository.GetById(pedido.SaboresPizzaId);            
 
-        private string PrencherPersonalizacoes(IEnumerable<AdicionaisPedido> adicionaisPedido)
-        {
-            return string.Empty;
-        }
+            return pedido;
+        }      
     }
 }

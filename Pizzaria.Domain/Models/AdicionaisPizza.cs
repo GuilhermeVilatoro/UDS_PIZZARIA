@@ -12,6 +12,6 @@ namespace Pizzaria.Domain.Models
 
         public int? Tempo { get; set; }
 
-        public virtual IEnumerable<AdicionaisPedido> AdicionaisPedido { get; set; }
+        public virtual IList<AdicionaisPedido> AdicionaisPedido { get; set; }
     }
 }

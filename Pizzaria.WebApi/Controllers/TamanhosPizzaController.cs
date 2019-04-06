@@ -33,14 +33,18 @@ namespace Pizzaria.WebApi.Controllers
 
         // PUT: api/TamanhosPizza/5
         [HttpPut("{id}")]
-        public IActionResult PutTamanhosPizzaViewModel([FromBody]TamanhosPizzaViewModel tamanhosPizzaViewModel)
+        public IActionResult PutTamanhosPizzaViewModel(int id, [FromBody]TamanhosPizzaViewModel tamanhosPizzaViewModel)
         {
             if (!ModelState.IsValid)
                 return Response(tamanhosPizzaViewModel);
 
-            _tamanhosPizzaService.Update(tamanhosPizzaViewModel);
+            var tamanhosPizzaViewModelAtual = _tamanhosPizzaService.GetById(id);
+            if (tamanhosPizzaViewModelAtual == null)
+                return new NotFoundObjectResult($"Não existe tamanho cadastrado com o identificador {id}!");
 
-            return Response(tamanhosPizzaViewModel);
+            _tamanhosPizzaService.Update(tamanhosPizzaViewModelAtual);
+
+            return Response(tamanhosPizzaViewModelAtual);
         }
 
         // POST: api/TamanhosPizza

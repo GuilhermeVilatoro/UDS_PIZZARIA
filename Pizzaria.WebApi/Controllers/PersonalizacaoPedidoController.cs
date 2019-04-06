@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pizzaria.Application.Services;
 using Pizzaria.Application.ViewModels;
+using System;
 
 namespace Pizzaria.WebApi.Controllers
 {
@@ -13,7 +14,7 @@ namespace Pizzaria.WebApi.Controllers
         public PersonalizacaoPedidoController(IPedidosService pedidosService) : base()
         {
             _pedidosService = pedidosService;
-        }        
+        }
 
         // POST: api/PersonalizacaoPedido
         [HttpPost]
@@ -22,9 +23,15 @@ namespace Pizzaria.WebApi.Controllers
             if (!ModelState.IsValid)
                 return Response(personalizacaoPedidoViewModel);
 
-            var pedidoViewModel = _pedidosService.PersonalizarPedido(personalizacaoPedidoViewModel);
-
-            return Response(pedidoViewModel);
-        }        
+            try
+            {
+                var pedidoViewModel = _pedidosService.PersonalizarPedido(personalizacaoPedidoViewModel);
+                return Response(pedidoViewModel);
+            }
+            catch (Exception ex)
+            {
+                return new ObjectResult($"Erro ao personalizar o pedido: {ex.Message}");
+            }
+        }
     }
 }

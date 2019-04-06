@@ -33,14 +33,18 @@ namespace Pizzaria.WebApi.Controllers
 
         // PUT: api/Livro/5
         [HttpPut("{id}")]
-        public IActionResult PutAdicionaisPizzaViewModel([FromBody]AdicionaisPizzaViewModel AdicionaisPizzaViewModel)
+        public IActionResult PutAdicionaisPizzaViewModel(int id, [FromBody]AdicionaisPizzaViewModel adicionaisPizzaViewModel)
         {
             if (!ModelState.IsValid)
-                return Response(AdicionaisPizzaViewModel);
+                return Response(adicionaisPizzaViewModel);
 
-            _adicionaisPizzaService.Update(AdicionaisPizzaViewModel);
+            var adicionaisPizzaViewModelAtual = _adicionaisPizzaService.GetById(id);
+            if (adicionaisPizzaViewModelAtual == null)
+                return new NotFoundObjectResult($"Não existe adicional de pizza cadastrado com o identificador {id}!");           
 
-            return Response(AdicionaisPizzaViewModel);
+            _adicionaisPizzaService.Update(adicionaisPizzaViewModel);
+
+            return Response(adicionaisPizzaViewModel);
         }
 
         // POST: api/AdicionaisPizza

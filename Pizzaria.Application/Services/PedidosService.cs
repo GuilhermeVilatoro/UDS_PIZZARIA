@@ -45,10 +45,10 @@ namespace Pizzaria.Application.Services
             return _mapper.Map<PedidoViewModel>(pedido);
         }
 
-        public ResumoPedidoViewModel ExibirResumoPedido(int identificadorPedido)
+        public PedidoViewModel ExibirPedido(int identificadorPedido)
         {
-            var resumoPedido = _resumoPedidoBusiness.ExibirResumoPedido(identificadorPedido);
-            return _mapper.Map<ResumoPedidoViewModel>(resumoPedido);
+            var pedido = _resumoPedidoBusiness.ExibirPedido(identificadorPedido);
+            return _mapper.Map<PedidoViewModel>(pedido);
         }
 
         public void FinalizarPedido(int identificadorPedido)

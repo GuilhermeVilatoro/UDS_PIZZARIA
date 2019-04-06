@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pizzaria.Application.Services;
 using Pizzaria.Application.ViewModels;
+using System;
 
 namespace Pizzaria.WebApi.Controllers
 {
@@ -13,7 +14,7 @@ namespace Pizzaria.WebApi.Controllers
         public MontagemPedidoController(IPedidosService pedidosService) : base()
         {
             _pedidosService = pedidosService;
-        }        
+        }
 
         // POST: api/MontagemPedido
         [HttpPost]
@@ -22,9 +23,15 @@ namespace Pizzaria.WebApi.Controllers
             if (!ModelState.IsValid)
                 return Response(montagemPedidoViewModel);
 
-            var pedidoViewModel = _pedidosService.MontarPedido(montagemPedidoViewModel);
-
-            return Response(pedidoViewModel);
-        }        
+            try
+            {
+                var pedidoViewModel = _pedidosService.MontarPedido(montagemPedidoViewModel);
+                return Response(pedidoViewModel);
+            }
+            catch (Exception ex)
+            {
+                return new ObjectResult($"Erro ao montar o pedido: {ex.Message}");
+            }
+        }
     }
 }

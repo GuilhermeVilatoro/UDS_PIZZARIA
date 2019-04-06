@@ -8,7 +8,7 @@ namespace Pizzaria.Application.Services
 
         PedidoViewModel PersonalizarPedido(PersonalizacaoPedidoViewModel personalizacaoPedido);
 
-        ResumoPedidoViewModel ExibirResumoPedido(int identificadorPedido);
+        PedidoViewModel ExibirPedido(int identificadorPedido);
 
         void FinalizarPedido(int identificadorPedido);
     }
