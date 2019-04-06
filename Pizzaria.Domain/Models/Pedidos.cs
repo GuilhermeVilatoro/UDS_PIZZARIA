@@ -8,16 +8,18 @@ namespace Pizzaria.Domain.Models
 
         public int SaboresPizzaId { get; set; }
 
-        public virtual SaboresPizza SaborPizza { get; set; }
+        public SaboresPizza SaboresPizza { get; set; }
 
-        public int TamanhoPizzaId { get; set; }
+        public int TamanhosPizzaId { get; set; }
 
-        public virtual TamanhosPizza TamanhoPizza { get; set; }
+        public TamanhosPizza TamanhosPizza { get; set; }
 
         public decimal Total { get; set; }
 
         public int Tempo { get; set; }
 
-        public virtual IEnumerable<AdicionaisPedido> AdicionaisPedido { get; set; }
+        public bool? Finalizado { get; set; }
+
+        public IList<AdicionaisPedido> AdicionaisPedido { get; set; }
     }
 } 

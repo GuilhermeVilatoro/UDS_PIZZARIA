@@ -4,10 +4,10 @@
     {
         public int PedidosId { get; set; }
 
-        public virtual Pedidos Pedido { get; set; }
+        public Pedidos Pedidos { get; set; }
 
         public int AdicionaisPizzaId { get; set; }
 
-        public virtual AdicionaisPizza AdicionalPizza { get; set; }        
+        public AdicionaisPizza AdicionaisPizza { get; set; }
     }
 }

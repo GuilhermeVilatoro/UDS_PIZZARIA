@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Pizzaria.Application.Services;
+using Pizzaria.Application.Services.Interfaces;
 using Pizzaria.Domain.Business;
 using Pizzaria.Domain.Business.Interfaces;
 using Pizzaria.Domain.Repository.Interfaces;
@@ -16,23 +17,26 @@ namespace Pizzaria.Infra.CrossCutting.IOC
         public static void RegisterDependencies(IServiceCollection dependencies)
         {
             #region Repository            
-            dependencies.AddScoped<IAdicionaisPedidoRepository, AdicionaisPedidoRepository>();
             dependencies.AddScoped<IAdicionaisPizzaRepository, AdicionaisPizzaRepository>();
             dependencies.AddScoped<IPedidoRepository, PedidoRepository>();
             dependencies.AddScoped<ISaboresPizzaRepository, SaboresPizzaRepository>();
-            dependencies.AddScoped<ITamanhosPizzaRepository, TamanhosPizzaRepository>();            
+            dependencies.AddScoped<ITamanhosPizzaRepository, TamanhosPizzaRepository>();
+            dependencies.AddScoped<IAdicionaisPedidoRepository, AdicionaisPedidoRepository>();
             dependencies.AddScoped<PizzariaContext>();
             #endregion
 
             #region Services 
-            dependencies.AddScoped<IAdicionaisPizzaService, AdicionaisPizzaService>();
             dependencies.AddScoped<IPedidosService, PedidosService>();
             dependencies.AddScoped<ISaboresPizzaService, SaboresPizzaService>();
             dependencies.AddScoped<ITamanhosPizzaService, TamanhosPizzaService>();
+            dependencies.AddScoped<IAdicionaisPizzaService, AdicionaisPizzaService>();
             #endregion region
 
             #region Business 
-            dependencies.AddScoped<IPedidoBusiness, PedidoBusiness>();            
+            dependencies.AddScoped<IMontagemPedidoBusiness, MontagemPedidoBusiness>();
+            dependencies.AddScoped<IPersonalizacaoPedidoBusiness, PersonalizacaoPedidoBusiness>();
+            dependencies.AddScoped<IResumoPedidoBusiness, ResumoPedidoBusiness>();
+            dependencies.AddScoped<IFinalizaPedidoBusiness, FinalizaPedidoBusiness>();
             #endregion region
         }
     }

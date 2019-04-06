@@ -1,9 +1,15 @@
-﻿using Pizzaria.Application.Services.Interfaces;
-using Pizzaria.Application.ViewModels;
+﻿using Pizzaria.Application.ViewModels;
 
 namespace Pizzaria.Application.Services
 {
-    public interface IPedidosService : IServiceBase<PedidoViewModel>
+    public interface IPedidosService
     {
+        PedidoViewModel MontarPedido(MontagemPedidoViewModel montagemPedido);
+
+        PedidoViewModel PersonalizarPedido(PersonalizacaoPedidoViewModel personalizacaoPedido);
+
+        PedidoViewModel ExibirPedido(int identificadorPedido);
+
+        void FinalizarPedido(int identificadorPedido);
     }
 }

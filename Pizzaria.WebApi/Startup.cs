@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using Pizzaria.Infra.CrossCutting.IOC;
 using Pizzaria.WebApi.Configurations;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
@@ -37,12 +38,12 @@ namespace Pizzaria.WebApi
 
             services.AddSwaggerGen(s =>
             {
-                s.SwaggerDoc("v1", new OpenApiInfo
+                s.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
                     Title = "Pizzaria WebApi",
                     Description = "Sistema de controle de pedidos de uma pizzaria",
-                    Contact = new OpenApiContact { Name = "Guilherme Vilatoro Santos", Email = "vilatorog@gmail.com" }
+                    Contact = new Contact { Name = "Guilherme Vilatoro Santos", Email = "vilatorog@gmail.com" }
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -50,7 +51,7 @@ namespace Pizzaria.WebApi
                 s.IncludeXmlComments(xmlPath);
             });
 
-            InjectionDependencies.RegisterDependencies(services);
+            InjectionDependencies.RegisterDependencies(services);           
 
             services.AddCors();
         }

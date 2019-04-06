@@ -11,6 +11,6 @@ namespace Pizzaria.WebApi.Controllers
                 success = true,
                 data = result
             });
-        }
+        }         
     }
 }

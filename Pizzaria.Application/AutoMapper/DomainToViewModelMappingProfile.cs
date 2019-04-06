@@ -10,9 +10,7 @@ namespace Pizzaria.Application.AutoMapper
         {
             CreateMap<SaboresPizzaViewModel, SaboresPizza>();
             CreateMap<TamanhosPizzaViewModel, TamanhosPizza>();
-            CreateMap<AdicionaisPizzaViewModel, AdicionaisPizza>();
-            CreateMap<PedidoViewModel, Pedidos>();
-            CreateMap<AdicionaisPedidoViewModel, AdicionaisPedido>();
+            CreateMap<AdicionaisPizzaViewModel, AdicionaisPizza>();                     
         }
     }
 }

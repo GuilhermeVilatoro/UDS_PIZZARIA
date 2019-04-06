@@ -18,7 +18,7 @@ namespace Pizzaria.WebApi.Controllers
         // GET: api/SaboresPizza
         [HttpGet]
         public IActionResult GetSaboresPizzaViewModel()
-        {
+        {           
             return Response(_saboresPizzaService.GetAll());
         }
 
@@ -33,14 +33,18 @@ namespace Pizzaria.WebApi.Controllers
 
         // PUT: api/Livro/5
         [HttpPut("{id}")]
-        public IActionResult PutSaboresPizzaViewModel([FromBody]SaboresPizzaViewModel saboresPizzaViewModel)
+        public IActionResult PutSaboresPizzaViewModel(int id, [FromBody]SaboresPizzaViewModel saboresPizzaViewModel)
         {
             if (!ModelState.IsValid)
                 return Response(saboresPizzaViewModel);
 
-            _saboresPizzaService.Update(saboresPizzaViewModel);
+            var saboresPizzaViewModelAtual = _saboresPizzaService.GetById(id);
+            if (saboresPizzaViewModelAtual == null)
+                return new NotFoundObjectResult($"Não existe sabor cadastrado com o identificador {id}!");            
 
-            return Response(saboresPizzaViewModel);
+            _saboresPizzaService.Update(saboresPizzaViewModelAtual);
+
+            return Response(saboresPizzaViewModelAtual);
         }
 
         // POST: api/SaboresPizza

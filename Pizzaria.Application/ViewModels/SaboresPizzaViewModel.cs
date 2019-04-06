@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Pizzaria.Application.ViewModels
@@ -14,6 +15,6 @@ namespace Pizzaria.Application.ViewModels
         public string Sabor { get; set; }
 
         [Description("Tempo adicional atribuído a alguns sabores")]
-        public int? TempoAdicional { get; set; }
+        public int? TempoAdicional { get; set; }        
     }
 }

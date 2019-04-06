@@ -1,4 +1,6 @@
-﻿namespace Pizzaria.Domain.Models
+﻿using System.Collections.Generic;
+
+namespace Pizzaria.Domain.Models
 {
     public class TamanhosPizza
     {
@@ -9,5 +11,7 @@
         public decimal Valor { get; set; }
 
         public int Tempo { get; set; }
+
+        public IList<Pedidos> Pedidos { get; set; }
     }
 }
