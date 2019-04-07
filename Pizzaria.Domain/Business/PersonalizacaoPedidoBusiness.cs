@@ -38,7 +38,7 @@ namespace Pizzaria.Domain.Business
         {
             var identificadorPedido = personalizacaoPedido.IdentificadorPedido;
 
-            var pedido = _pedidoRepository.GetById(personalizacaoPedido.IdentificadorPedido);
+            var pedido = _pedidoRepository.GetById(identificadorPedido);
             if (pedido == null)
                 throw new Exception($"O pedido {identificadorPedido} não existe!");
 
