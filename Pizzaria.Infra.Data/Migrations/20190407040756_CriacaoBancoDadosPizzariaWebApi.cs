@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pizzaria.Infra.Data.Migrations
 {
-    public partial class BancoDeDadosInicial : Migration
+    public partial class CriacaoBancoDadosPizzariaWebApi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,9 +58,10 @@ namespace Pizzaria.Infra.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SaboresPizzaId = table.Column<int>(nullable: false),
-                    TamanhoPizzaId = table.Column<int>(nullable: false),
+                    TamanhosPizzaId = table.Column<int>(nullable: false),
                     Total = table.Column<decimal>(nullable: false),
-                    Tempo = table.Column<int>(nullable: false)
+                    Tempo = table.Column<int>(nullable: false),
+                    Finalizado = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,8 +73,8 @@ namespace Pizzaria.Infra.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pedidos_TamanhosPizza_TamanhoPizzaId",
-                        column: x => x.TamanhoPizzaId,
+                        name: "FK_Pedidos_TamanhosPizza_TamanhosPizzaId",
+                        column: x => x.TamanhosPizzaId,
                         principalTable: "TamanhosPizza",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -114,9 +115,9 @@ namespace Pizzaria.Infra.Data.Migrations
                 column: "SaboresPizzaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pedidos_TamanhoPizzaId",
+                name: "IX_Pedidos_TamanhosPizzaId",
                 table: "Pedidos",
-                column: "TamanhoPizzaId");
+                column: "TamanhosPizzaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -135,6 +136,6 @@ namespace Pizzaria.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "TamanhosPizza");
-        }
+        }        
     }
 }

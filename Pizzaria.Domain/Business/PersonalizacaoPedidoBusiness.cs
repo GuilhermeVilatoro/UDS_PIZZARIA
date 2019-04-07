@@ -4,7 +4,6 @@ using Pizzaria.Domain.Business.Interfaces;
 using Pizzaria.Domain.Models;
 using Pizzaria.Domain.Repository.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Pizzaria.Domain.Business
@@ -44,7 +43,7 @@ namespace Pizzaria.Domain.Business
                 throw new Exception($"O pedido {identificadorPedido} não existe!");
 
             if (pedido.Finalizado.GetValueOrDefault(true))
-                throw new Exception($"O pedido já esta finalizado não é possível adicional incrementos!");
+                throw new Exception($"O pedido já esta finalizado não é possível adicionar incrementos!");
 
             var adicionalPizza = personalizacaoPedido.AdicionalPizza;
 
@@ -65,11 +64,9 @@ namespace Pizzaria.Domain.Business
             pedido.AdicionaisPedido = _adicionaisPedidoRepository.BuscarAdicionaisPorPedido(identificadorPedido);           
 
             pedido.AdicionaisPedido.Add(new AdicionaisPedido
-            {
-                AdicionaisPizzaId = personalizacaoPizza.Id,
-                PedidosId = pedido.Id
-                //AdicionaisPizza = personalizacaoPizza,
-                //Pedidos = pedido
+            {               
+                AdicionaisPizza = personalizacaoPizza,
+                Pedidos = pedido
             });
 
             _pedidoRepository.Update(pedido);

@@ -40,7 +40,7 @@ namespace Pizzaria.WebApi.Controllers
             try
             {
                 _pedidosService.FinalizarPedido(identificadorPedido);
-                return new ObjectResult($"O pedido finalizado com sucesso!");
+                return new ObjectResult($"O pedido foi finalizado com sucesso!");
             }
             catch (Exception ex)
             {

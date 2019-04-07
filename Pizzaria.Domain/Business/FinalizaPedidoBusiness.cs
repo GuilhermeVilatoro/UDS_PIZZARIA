@@ -19,6 +19,9 @@ namespace Pizzaria.Domain.Business
             if (pedido == null)
                 throw new Exception($"O pedido {identificadorPedido} não existe!");
 
+            if (pedido.Finalizado.GetValueOrDefault(true))
+                throw new Exception($"O pedido {identificadorPedido} já esta finalizado!");
+
             pedido.Finalizado = true;
             _pedidoRepository.Update(pedido);
         }

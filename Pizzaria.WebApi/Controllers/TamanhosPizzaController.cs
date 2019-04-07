@@ -57,15 +57,6 @@ namespace Pizzaria.WebApi.Controllers
             _tamanhosPizzaService.Add(tamanhosPizzaViewModel);
 
             return Response(tamanhosPizzaViewModel);
-        }
-
-        // DELETE: api/TamanhosPizza/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteTamanhosPizzaViewModel(int id)
-        {
-            _tamanhosPizzaService.Delete(id);
-
-            return Response();
-        }
+        }        
     }
 }

@@ -4,6 +4,8 @@ namespace Pizzaria.Application.ViewModels
 {
     public class PedidoViewModel
     {
+        public int Id { get; set; }
+
         public string SaborPizza { get; set; }
 
         public string TamanhoPizza { get; set; }

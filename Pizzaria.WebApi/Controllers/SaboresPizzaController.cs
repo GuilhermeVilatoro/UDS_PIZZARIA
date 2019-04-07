@@ -57,15 +57,6 @@ namespace Pizzaria.WebApi.Controllers
             _saboresPizzaService.Add(saboresPizzaViewModel);
 
             return Response(saboresPizzaViewModel);
-        }
-
-        // DELETE: api/SaboresPizza/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteSaboresPizzaViewModel(int id)
-        {
-            _saboresPizzaService.Delete(id);
-
-            return Response();
-        }
+        }        
     }
 }

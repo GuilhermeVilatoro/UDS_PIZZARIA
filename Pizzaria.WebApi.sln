@@ -11,19 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - WebApi", "3 - WebApi", "{1904EFC8-917F-4C67-B622-F33F6E07753E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.Infra.CrossCutting", "Pizzaria.Infra.CrossCutting\Pizzaria.Infra.CrossCutting.csproj", "{5C6B02F0-7A23-41BD-AEC5-CF45F3CD6644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.Infra.CrossCutting", "Pizzaria.Infra.CrossCutting\Pizzaria.Infra.CrossCutting.csproj", "{5C6B02F0-7A23-41BD-AEC5-CF45F3CD6644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.Infra.Data", "Pizzaria.Infra.Data\Pizzaria.Infra.Data.csproj", "{9570AC6F-9BAD-4F0D-84F1-76E1E5AE3360}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.Infra.Data", "Pizzaria.Infra.Data\Pizzaria.Infra.Data.csproj", "{9570AC6F-9BAD-4F0D-84F1-76E1E5AE3360}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.Domain", "Pizzaria.Domain\Pizzaria.Domain.csproj", "{4120A81D-FA45-4505-AF3B-40ABEEAA6589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.Domain", "Pizzaria.Domain\Pizzaria.Domain.csproj", "{4120A81D-FA45-4505-AF3B-40ABEEAA6589}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - UnitTests", "4 - UnitTests", "{3C9564AC-8313-45C7-938A-13C9895525B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.Application", "Pizzaria.Application\Pizzaria.Application.csproj", "{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.Domain.UnitTests", "Pizzaria.Domain.Business.UnitTests\Pizzaria.Domain.UnitTests.csproj", "{14F68296-6C93-43F5-864C-41EE2DA342F2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.Application", "Pizzaria.Application\Pizzaria.Application.csproj", "{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.WebApi", "Pizzaria.WebApi\Pizzaria.WebApi.csproj", "{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.WebApi", "Pizzaria.WebApi\Pizzaria.WebApi.csproj", "{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +39,6 @@ Global
 		{4120A81D-FA45-4505-AF3B-40ABEEAA6589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4120A81D-FA45-4505-AF3B-40ABEEAA6589}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4120A81D-FA45-4505-AF3B-40ABEEAA6589}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14F68296-6C93-43F5-864C-41EE2DA342F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14F68296-6C93-43F5-864C-41EE2DA342F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14F68296-6C93-43F5-864C-41EE2DA342F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14F68296-6C93-43F5-864C-41EE2DA342F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,7 +55,6 @@ Global
 		{5C6B02F0-7A23-41BD-AEC5-CF45F3CD6644} = {0F9205E4-6838-4A30-8D32-317FDFC7FFF2}
 		{9570AC6F-9BAD-4F0D-84F1-76E1E5AE3360} = {0F9205E4-6838-4A30-8D32-317FDFC7FFF2}
 		{4120A81D-FA45-4505-AF3B-40ABEEAA6589} = {EBE2C00F-1ED0-47FC-8B68-F58AE758E209}
-		{14F68296-6C93-43F5-864C-41EE2DA342F2} = {3C9564AC-8313-45C7-938A-13C9895525B1}
 		{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5} = {F03CAD35-61AF-430A-945A-05C54F56474A}
 		{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1} = {1904EFC8-917F-4C67-B622-F33F6E07753E}
 	EndGlobalSection
