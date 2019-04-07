@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.Application", "Piz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.WebApi", "Pizzaria.WebApi\Pizzaria.WebApi.csproj", "{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - UnitTests", "4 - UnitTests", "{3BDA4E4D-7443-46B3-B3A6-3C98D816B6D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.Domain.UnitTests", "Pizzaria.Domain.UnitTests\Pizzaria.Domain.UnitTests.csproj", "{22400CBA-D067-46E3-ABC4-27B8D057A5CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22400CBA-D067-46E3-ABC4-27B8D057A5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22400CBA-D067-46E3-ABC4-27B8D057A5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22400CBA-D067-46E3-ABC4-27B8D057A5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22400CBA-D067-46E3-ABC4-27B8D057A5CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +65,7 @@ Global
 		{4120A81D-FA45-4505-AF3B-40ABEEAA6589} = {EBE2C00F-1ED0-47FC-8B68-F58AE758E209}
 		{886A0EE2-D5D9-4549-B8E3-64F67AFF98B5} = {F03CAD35-61AF-430A-945A-05C54F56474A}
 		{A24FEA6F-2249-4DE0-87F1-C3DAEF4C0AB1} = {1904EFC8-917F-4C67-B622-F33F6E07753E}
+		{22400CBA-D067-46E3-ABC4-27B8D057A5CB} = {3BDA4E4D-7443-46B3-B3A6-3C98D816B6D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B149BD40-04E1-4A25-A2AE-AD58CAE01465}

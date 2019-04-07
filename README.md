@@ -18,4 +18,6 @@
 * DDD (Domain-Driven-Design)
 * SOLID
 * Injeção de dependências
+* Testes unitários
+* NSubstitute
 
