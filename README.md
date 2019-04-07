@@ -3,7 +3,7 @@
 ## Informações para teste da API
 
 * Os testes poderão ser realizados rodando a API e batendo na raiz(URL: https://localhost:44372/) com swagger.
-* Os testes também poderam ser testados via Postman com as suas respectivas rotas.
+* Os testes também poderam ser realizados via Postman com as suas respectivas rotas.
 # Tecnologias usadas
 
 ## Backend
