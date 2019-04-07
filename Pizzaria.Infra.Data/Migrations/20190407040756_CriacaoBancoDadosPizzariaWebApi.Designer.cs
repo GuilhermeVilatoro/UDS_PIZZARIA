@@ -10,8 +10,8 @@ using Pizzaria.Infra.Data.Context;
 namespace Pizzaria.Infra.Data.Migrations
 {
     [DbContext(typeof(PizzariaContext))]
-    [Migration("20190406182841_AlteracaoBancoTeste2")]
-    partial class AlteracaoBancoTeste2
+    [Migration("20190407040756_CriacaoBancoDadosPizzariaWebApi")]
+    partial class CriacaoBancoDadosPizzariaWebApi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

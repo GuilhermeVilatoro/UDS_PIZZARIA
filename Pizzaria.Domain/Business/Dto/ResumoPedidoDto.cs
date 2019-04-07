@@ -5,6 +5,8 @@ namespace Pizzaria.Domain.Business.Dto
 {
     public class ResumoPedidoDto
     {
+        public int Id { get; set; }
+
         public string SaborPizza { get; set; }
 
         public string TamanhoPizza { get; set; }

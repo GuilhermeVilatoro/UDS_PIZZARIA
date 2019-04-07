@@ -16,6 +16,7 @@ namespace Pizzaria.WebApi.Controllers
         }
 
         // GET: api/AdicionaisPizza
+        [Route("~/api/[controller]")]
         [HttpGet]
         public IActionResult GetAdicionaisPizzaViewModel()
         {
@@ -57,15 +58,6 @@ namespace Pizzaria.WebApi.Controllers
             _adicionaisPizzaService.Add(AdicionaisPizzaViewModel);
 
             return Response(AdicionaisPizzaViewModel);
-        }
-
-        // DELETE: api/AdicionaisPizza/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteAdicionaisPizzaViewModel(int id)
-        {
-            _adicionaisPizzaService.Delete(id);
-
-            return Response();
-        }
+        }        
     }
 }
